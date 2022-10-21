@@ -22,3 +22,10 @@ def index(request):
         'reviews' : reviews
     }
     return render(request, 'reviews/index.html', context)
+
+def detail(request, pk):
+    reviews = Review.objects.get(pk=pk)
+    context = {
+        'reviews' : reviews
+    }
+    return render(request, 'reviews/detail.html', context)
