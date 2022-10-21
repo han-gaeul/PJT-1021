@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="mt-3">{{ user.username }}님의 정보</h1>
+  <h1 class="mt-3">{{ request.user }}님의 정보</h1>
   <div class="containe row mt-3">
     <div class="col-6">
       <h3>작성한 글</h3>
