@@ -5,13 +5,17 @@
     <h1 class="text-center">리뷰</h1>
     {% if request.user.is_authenticated %}
       <div class="d-flex justify-content-end">
-        <a href="{% url 'reviews:create' %}" class="btn btn-secondary my-2">작성</a>
+        <a href="{% url 'reviews:create' %}" class="btn btn-light my-2">작성</a>
       </div>
     {% endif %}
+
     <div class="row">
       {% for review in reviews %}
         <div class="col-4 my-3" style="cursor: pointer;" onclick="location.href='(% url 'reviews:detail' review.pk %}">
           <div class="card">
+            {% if review.thumbnail.url %}
+              <img src="{{ review.thumbnail.url }}" alt="{{ article.thumbnail }}" class="cared-img-top">
+            {% endif %}
             <h5 class="card-title">{{ reivew.title }}</h5>
             <p class="card-text text-muted">
               <a href="{% url 'accounts:detail' review.pk %}">{{ review.user.username }}</a>

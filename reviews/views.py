@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def create(request):
     if request.method == 'POST':
-        reviews_form = ReviewForm(request.POST)
+        reviews_form = ReviewForm(request.POST, request.FILES)
         if reviews_form.is_valid():
             reviews = reviews_form.save(commit=False)
             reviews.user = request.user
