@@ -6,19 +6,7 @@ from django.forms import ModelForm, TextInput, Textarea
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = '__all__'
-        widget = {
-            'title' : forms.TextInput(
-                attrs={
-                    'placeholder' : '제목을 입력해주세요.'
-                }
-            ),
-            'content' : forms.Textarea(
-                attrs={
-                    'placeholder' : '내용을 입력해주세요.'
-                }
-            )
-        }
+        fields = ('title', 'content', 'movie_name', 'grade', )
 
 class CommentForm(forms.ModelForm):
     class Meta:
