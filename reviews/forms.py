@@ -7,7 +7,7 @@ from django.forms import ModelForm, TextInput, Textarea
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ('title', 'content', 'movie_name', 'grade', )
+        fields = ('title', 'content', 'movie_name', 'grade', 'image', )
         labels = {
             'title' : '제목',
             'content' : '내용',

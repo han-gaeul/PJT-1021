@@ -11,15 +11,19 @@
 
     <div class="row">
       {% for review in reviews %}
-        <div class="col-4 my-3" style="cursor: pointer;" onclick="location.href='(% url 'reviews:detail' review.pk %}">
+        <div class="col-4 my-3" style="cursor: pointer;">
           <div class="card">
             {% if review.thumbnail.url %}
               <img src="{{ review.thumbnail.url }}" alt="{{ article.thumbnail }}" class="cared-img-top">
             {% endif %}
-            <h5 class="card-title">{{ reivew.title }}</h5>
-            <p class="card-text text-muted">
-              <a href="{% url 'accounts:detail' review.pk %}">{{ review.user.username }}</a>
-            </p>
+            <div class="card-body">
+              <a href="{% url 'reviews:detail' review.pk %}">
+                <h5 class="card-title">{{ reivew.title }}</h5>
+              </a>
+              <p class="card-text">
+                <a href="{% url 'accounts:detail' review.pk %}" class="text-muted">{{ review.user.username }}</a>
+              </p>
+            </div>
           </div>
         </div>
       {% endfor %}
