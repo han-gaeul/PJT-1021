@@ -23,15 +23,15 @@ def index(request):
     }
     return render(request, 'reviews/index.html', context)
 
-def detail(request, pk):
-    reviews = Review.objects.get(pk=pk)
+def detail(request, reviews_pk):
+    reviews = Review.objects.get(pk=reviews_pk)
     context = {
         'reviews' : reviews
     }
     return render(request, 'reviews/detail.html', context)
 
-def update(request, pk):
-    reviews = Review.objects.get(pk=pk)
+def update(request, reviews_pk):
+    reviews = Review.objects.get(pk=reviews_pk)
     if request.method == 'POST':
         reviews_form = ReviewForm(request.POST, instance=reviews)
         if reviews_form.is_valid():
@@ -44,8 +44,8 @@ def update(request, pk):
     }
     return render(request, 'reveiws/form.html', context)
 
-def delete(request, pk):
-    Review.objects.get(pk=pk).delete()
+def delete(request, reviews_pk):
+    Review.objects.get(pk=reviews_pk).delete()
     return redirect('reviews:index')
 
 def comment_create(request, pk):
