@@ -3,16 +3,16 @@
 
 {% block content %}
   <div class="container text-center">
-    {% if reuqest.path == '/create/' %}
+    {% if request.resolver_match.url_name == 'create' %}
       <h1>리뷰 작성</h1>
-    {% elif request.path == '/update/' %}
+    {% else %}
       <h1>리뷰 수정</h1>
     {% endif %}
   </div>
 
-  <form action="{% url 'reviews:index' %}" method="POST" class="form-control border border-white">
+  <form action="" method="POST" class="form-control border border-white" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form reviews_form %}
-    <input type="submit" value="등록" class="btn btn-outline-secondary text-dark">
+    {% bootstrap_button button_type="submit" button_class="btn-primary" content="작성" %}
   </form>
 {% endblock content %}
