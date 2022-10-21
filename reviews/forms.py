@@ -1,6 +1,6 @@
 from django import forms
 from django import forms
-from .models import Review
+from .models import Review, Comment
 from django.forms import ModelForm, TextInput, Textarea
 
 class ReviewForm(forms.ModelForm):
@@ -19,3 +19,8 @@ class ReviewForm(forms.ModelForm):
                 }
             )
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content', ]
