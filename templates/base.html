@@ -29,9 +29,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:detail' request.user.pk %}">회원 정보</a>
-              </li>
+              {% comment %} <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:profile' request.user.pk %}">회원 정보</a>
+              </li> {% endcomment %}
             {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>

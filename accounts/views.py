@@ -44,13 +44,14 @@ def logout(request):
     return redirect('reviews:index')
 
 @login_required
-def detail(request, pk):
+def profile(request, pk):
     user = get_user_model().objects.filter(pk=pk)
     context = {
         'user' : user
     }
-    return render(request, 'accounts/detail.html', context)
+    return render(request, 'accounts/profile.html', context)
 
+@login_required
 def profile_update(request):
     user = get_user_model().objects.get(pk=request.user.pk)
     current_user = user.profile_set.all()[0]

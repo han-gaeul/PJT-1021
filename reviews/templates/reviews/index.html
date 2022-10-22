@@ -21,7 +21,7 @@
                 <h5 class="card-title">{{ reivew.title }}</h5>
               </a>
               <p class="card-text">
-                <a href="{% url 'accounts:detail' review.pk %}" class="text-muted">{{ review.user.username }}</a>
+                <a href="{% url 'accounts:profile' review.pk %}" class="text-muted">{{ review.user.username }}</a>
               </p>
             </div>
           </div>
