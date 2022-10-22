@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
+from .models import Profile
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -10,8 +11,11 @@ from django.contrib.auth.decorators import login_required
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        profile = Profile()
         if form.is_valid():
             user = form.save()
+            profile.user = user
+            profile.save()
             auth_login(request, user)
             return redirect('reviews:index')
     else:
@@ -46,3 +50,18 @@ def detail(request, pk):
         'user' : user
     }
     return render(request, 'accounts/detail.html', context)
+
+def profile_update(request):
+    user = get_user_model().objects.get(pk=request.user.pk)
+    current_user = user.profile_set.all()[0]
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=current_user)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:profile')
+    else:
+        form = ProfileForm(instance=current_user)
+    context = {
+        'profile_form' : form,
+    }
+    return render(request, 'accounts/profile_update.html', context)
